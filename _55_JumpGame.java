@@ -1,4 +1,20 @@
 class Solution {
+	public boolean canJump(int[] nums) {
+        if (nums == null || nums.length <= 1) return true;
+        int m = nums.length;
+        int t = 0;
+        int max = 0;
+        int maxIndex = m - 1;
+        for (int i = m - 2; i >= 0; i--) {
+            t = nums[i] - (curIndex - i);
+            max = Math.max(cur, t);
+            if (t >= 0) {
+                maxIndex = i;                
+            }
+        }
+        return max >= 0 && maxIndex == 0; 
+    }
+	
     public boolean canJump(int[] nums) {
         if (nums == null || nums.length == 0) return true;
         int i = 0;
@@ -30,7 +46,7 @@ class Solution {
     }
 	
 	// refer: https://leetcode.com/problems/jump-game/discuss/20900/Simplest-O(N)-solution-with-constant-space comment 1.
-	public boolean canJump(int[] nums) {
+	public boolean canJump2(int[] nums) {
         if (nums == null || nums.length <= 1) return true;
         int max = nums[0];
         int curMax = 0;
