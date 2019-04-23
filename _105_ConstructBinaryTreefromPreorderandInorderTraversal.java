@@ -9,25 +9,32 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if (preorder == null || inorder == null) return null;
+        if (preorder == null || inorder == null || preorder.length == 0 || inorder.length == 0) return null;
         return bt(preorder, 0, preorder.length-1, inorder, 0, inorder.length-1);
     }
     
-    private TreeNode bt(int[] preorder, int s1, int e1, int[] inorder, int s2, int e2) {
-        if (s1 > e1 || s2 > e2) return null;
-        TreeNode root = new TreeNode(preorder[s1]);
+    private TreeNode bt(int[] preorder, int startPre, int endPre, int[] inorder, int startIn, int endIn) {
+        if (startPre > endPre || startIn > endIn) return null;
+        TreeNode root = new TreeNode(preorder[startPre]);
+        
         int rootIndex = -1;
-        for (int i = s2; i <= e2; i++) {
-            if (inorder[i] == preorder[s1]) {
+        for (int i = startIn; i <= endIn; i++) {
+            if (inorder[i] == preorder[startPre]) {
                 rootIndex = i;
                 break;
             }
         }
-        int leftLength = rootIndex - s2;
-        if (leftLength > 0)
-            root.left = bt(preorder, s1+1, s1+1+leftLength-1, inorder, s2, rootIndex-1);
-        if (leftLength < e1 - s1 + 1)
-            root.right = bt(preorder, s1+1+leftLength, e1, inorder, rootIndex+1, inorder.length-1);
+        if (rootIndex == -1) throw new RuntimeException();
+        
+        int leftLen = rootIndex - 1 - startIn + 1;
+        if (leftLen > 0) {
+            root.left = bt(preorder, startPre + 1, startPre + 1 + leftLen - 1, inorder, startIn, rootIndex - 1);
+        }
+        
+        if (leftLen < endPre - startPre + 1) {
+            root.right = bt(preorder, startPre + 1 + leftLen, endPre, inorder, rootIndex + 1, endIn);
+        }
+        
         return root;
     }
 }
