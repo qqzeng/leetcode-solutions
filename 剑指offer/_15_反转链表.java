@@ -16,7 +16,7 @@ public class Solution {
             node.next.next=node;
             node.next=null;
             return newRoot;
-        } 
+        }
     }
     
     public ListNode ReverseList(ListNode head) {
