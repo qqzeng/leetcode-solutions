@@ -8,6 +8,10 @@ public class ListNode {
     }
 }*/
 public class Solution {
+
+     // 如果可以事先知道两个链表的长度，则让长的链表先走二者的差值，然后，再同时走，会交于同一个节点
+
+     // 还可以两个指针分别遍历两个链表，当某一个指针遍历完成后，就重新设置为另一个链表的表头，这样二者最终会相交于一个节点
      // 还可以用栈
     public ListNode FindFirstCommonNode(ListNode pHead1, ListNode pHead2) {
         if (pHead1 == null || pHead2 == null) return null;

@@ -15,7 +15,7 @@ public class Solution {
         if(exponent<0){
             n = -exponent;
         }
-        double  result=Power(base,n>>1);
+        double result=Power(base,n>>1);
         result*=result;
         if((n&0x1)==1)
             result*=base; 

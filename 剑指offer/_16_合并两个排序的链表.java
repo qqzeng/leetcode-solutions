@@ -49,3 +49,4 @@ public class Solution {
         newHead.next = MergeRecursively(list1, list2);
         return newHead;
     }
+}
